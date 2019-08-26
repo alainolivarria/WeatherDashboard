@@ -15,7 +15,13 @@ namespace WeatherDashboard.Business
     {
         private const string URL = "https://api.weatherbit.io/v1.0/history/daily";
 
-
+        /// <summary>
+        /// simulate the import data to the database, and return this data.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="city_name"></param>
+        /// <returns></returns>
         public static CityWeather GetWheather(DateTime start, DateTime end, string city_name)
         {
             ImportData(start, end, city_name);
@@ -30,6 +36,12 @@ namespace WeatherDashboard.Business
             return WeatherData.GetAllCities();
         }
 
+        /// <summary>
+        /// call the api weather to simulate save the information on database
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="city_name"></param>
         private static void ImportData(DateTime start, DateTime end, string city_name)
         {
             //this method simulate import data to the database, we should keep the informatión in on local.
@@ -52,7 +64,7 @@ namespace WeatherDashboard.Business
                     urlParameters = string.Format("?lat={0}&lon={1}&start_date={2:yyyy-MM-dd}&end_date={3:yyyy-MM-dd}&key=acfc6084caae440883937ebd4cf90140", city.lat, city.lon, start, start.AddDays(1));
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    HttpResponseMessage response = client.GetAsync(urlParameters).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
+                    HttpResponseMessage response = client.GetAsync(urlParameters).Result; 
                     if (response.IsSuccessStatusCode)
                     {
                         string json = response.Content.ReadAsStringAsync().Result;

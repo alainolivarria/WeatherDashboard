@@ -20,6 +20,13 @@ namespace WeatherDashboard.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Return list of temperatures and dates.
+        /// </summary>
+        /// <param name="endDate"></param> this param mark the end of the 15 days range.
+        /// <param name="cityName"></param> name of the city.
+        /// <param name="scale"></param> scale used.
+        /// <returns></returns>
         public ActionResult GetWeather(DateTime endDate, string cityName, int scale)
         {
             try
