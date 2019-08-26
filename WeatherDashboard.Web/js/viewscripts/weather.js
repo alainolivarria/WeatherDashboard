@@ -38,18 +38,11 @@ $(document).ready(function () {
                 this.selCity.on("change", self.loadDataChart);
                 this.selScale.on("change", self.loadDataChart);
                 this.datepicker1.on("dp.change", self.loadDataChart);
-
-                //self.btnOcultarColumnas.click(this.OcultarColumnas);
-                //self.btnMostraColumnas.click(this.MostrarColumnas);
-
-                //$('a.toggle-vis').on('click', this.columnasClick);
-
-                //self.btnGuardarMostrarColumnas.click(this.GuardarMostrarColumnas);
             },
 
             loadDataChart: function(){
                 var self = Weather;
-                debugger;
+
                 $body = $("body");
 
                 var result = $.ajax({
@@ -72,7 +65,7 @@ $(document).ready(function () {
                             $.each(data.datesfull, function (i, item) {
                                 objs.push({ date: item, temp: data.temps[i]});
                             });
-                            debugger;
+
                             self.loadGrid(objs);
 
                         }
@@ -95,7 +88,7 @@ $(document).ready(function () {
 
             createChart: function (cat, temps) {
                 var self = Weather;
-                debugger;
+  
                 self.tempGraph.highcharts({
                     chart: {
                         type: 'line'
